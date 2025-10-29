@@ -6,6 +6,9 @@
 	"manifest.command.extract.title": "Extract Matches",
 	"manifest.command.validate.title": "Validate Regex",
 	"manifest.command.settings.title": "Open Settings",
+	"manifest.command.settings.export.title": "Export Settings",
+	"manifest.command.settings.import.title": "Import Settings",
+	"manifest.command.settings.reset.title": "Reset Settings",
 	"manifest.command.help.title": "Help & Troubleshooting",
 	"manifest.settings.title": "Regex-LE Settings",
 	"manifest.settings.copy.clipboard.desc": "Automatically copy extraction results to the clipboard",
@@ -91,6 +94,26 @@
 	"runtime.safety.output-size.suggestion": "Consider filtering results or increasing the threshold",
 	"runtime.safety.output.passed": "Output safety check passed",
 	"runtime.safety.confirm.proceed": "Proceed",
-	"runtime.safety.confirm.cancel": "Cancel"
+	"runtime.safety.confirm.cancel": "Cancel",
+
+	"runtime.settings.export.success": "Settings exported successfully",
+	"runtime.settings.export.error": "Failed to export settings: {0}",
+	"runtime.settings.import.title": "Import Regex-LE Settings",
+	"runtime.settings.import.cancelled": "Settings import cancelled",
+	"runtime.settings.import.size-error": "Cannot import settings: {0}",
+	"runtime.settings.import.parse-error": "Invalid JSON file: {0}",
+	"runtime.settings.import.validation-failed": "Settings validation failed:",
+	"runtime.settings.import.validation-title": "Cannot import settings due to validation errors",
+	"runtime.settings.import.view-details": "View Details",
+	"runtime.settings.import.partial-warning": "{0} invalid setting(s) will be skipped. Import {1} valid setting(s)?",
+	"runtime.settings.import.confirm": "Import Valid Settings",
+	"runtime.settings.import.success": "Imported {0} setting(s) successfully",
+	"runtime.settings.import.success-partial": "Imported {0} setting(s) successfully ({1} invalid setting(s) skipped)",
+	"runtime.settings.import.error": "Failed to import settings: {0}",
+	"runtime.settings.reset.confirm": "Are you sure you want to reset all Regex-LE settings to defaults?",
+	"runtime.settings.reset.confirm-yes": "Reset Settings",
+	"runtime.settings.reset.success": "Settings reset to defaults",
+	"runtime.settings.reset.error": "Failed to reset settings: {0}",
+	"runtime.confirmation.cancel": "Cancel"
 }
 

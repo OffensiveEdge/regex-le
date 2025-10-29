@@ -1,6 +1,11 @@
 import type * as vscode from 'vscode'
 import { registerCommands } from './commands'
-import { registerOpenSettingsCommand } from './config/settings'
+import {
+	registerOpenSettingsCommand,
+	registerExportSettingsCommand,
+	registerImportSettingsCommand,
+	registerResetSettingsCommand,
+} from './config/settings'
 import { createServices } from './services/serviceFactory'
 
 /**
@@ -8,21 +13,24 @@ import { createServices } from './services/serviceFactory'
  * Keeps this file minimal - only register commands and providers
  */
 export function activate(context: vscode.ExtensionContext): void {
-  // Create all core services using the service factory
-  const services = createServices(context)
+	// Create all core services using the service factory
+	const services = createServices(context)
 
-  // Register commands with services
-  registerCommands(context, {
-    telemetry: services.telemetry,
-    notifier: services.notifier,
-    statusBar: services.statusBar,
-    performanceMonitor: services.performanceMonitor,
-  })
+	// Register commands with services
+	registerCommands(context, {
+		telemetry: services.telemetry,
+		notifier: services.notifier,
+		statusBar: services.statusBar,
+		performanceMonitor: services.performanceMonitor,
+	})
 
-  // Register settings command
-  registerOpenSettingsCommand(context, services.telemetry)
+	// Register settings commands
+	registerOpenSettingsCommand(context, services.telemetry)
+	registerExportSettingsCommand(context, services.telemetry)
+	registerImportSettingsCommand(context, services.telemetry)
+	registerResetSettingsCommand(context, services.telemetry)
 
-  services.telemetry.event('extension-activated')
+	services.telemetry.event('extension-activated')
 }
 
 /**
