@@ -1,0 +1,82 @@
+# Build artifacts
+dist/
+out/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Coverage
+*.lcov
+coverage/*
+!coverage/index.html
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Temporary folders
+tmp/
+temp/
+
+# VS Code extension specific
+.vscode-test/
+.vscode-test-electron/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# Package files
+*.vsix
+
+# Release packages
+release/
+
+# Environment files
+.env
+.env.*
+
+# Copied i18n files (generated during build)
+package.nls.de.json
+package.nls.es.json
+package.nls.fr.json
+package.nls.id.json
+package.nls.it.json
+package.nls.ja.json
+package.nls.ko.json
+package.nls.pt-br.json
+package.nls.ru.json
+package.nls.uk.json
+package.nls.vi.json
+package.nls.zh-cn.json
+
+# Keep source i18n files
+!src/i18n/*.*
+
