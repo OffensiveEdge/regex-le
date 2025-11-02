@@ -1,163 +1,158 @@
-import * as vscode from 'vscode'
-import * as nls from 'vscode-nls'
-import { getConfiguration } from '../config/config'
-import { testRegexPattern } from '../extraction/regex/regexTest'
-import type { Telemetry } from '../telemetry/telemetry'
-import type { Notifier } from '../ui/notifier'
-import type { StatusBar } from '../ui/statusBar'
-import { handleSafetyChecks } from '../utils/safety'
+import * as vscode from 'vscode';
+import * as nls from 'vscode-nls';
+import { getConfiguration } from '../config/config';
+import { extractRegexPatterns } from '../extraction/regex/extractPatterns';
+import type { Telemetry } from '../telemetry/telemetry';
+import type { Notifier } from '../ui/notifier';
+import type { StatusBar } from '../ui/statusBar';
+import { handleSafetyChecks } from '../utils/safety';
 
-const localize = nls.config({ messageFormat: nls.MessageFormat.file })()
+const localize = nls.config({ messageFormat: nls.MessageFormat.file })();
 
 /**
  * Register the regex extract command
- * Extracts all matches from the active editor using a regex pattern
+ * Extracts all regex patterns from the active editor
  */
 export function registerExtractCommand(
-  context: vscode.ExtensionContext,
-  deps: Readonly<{
-    telemetry: Telemetry
-    notifier: Notifier
-    statusBar: StatusBar
-  }>,
+	context: vscode.ExtensionContext,
+	deps: Readonly<{
+		telemetry: Telemetry;
+		notifier: Notifier;
+		statusBar: StatusBar;
+	}>,
 ): void {
-  const disposable = vscode.commands.registerCommand('regex-le.extract', async () => {
-    deps.telemetry.event('command-extract')
+	const disposable = vscode.commands.registerCommand(
+		'regex-le.extract',
+		async (): Promise<void> => {
+			deps.telemetry.event('command-extract');
 
-    const editor = vscode.window.activeTextEditor
-    if (!editor) {
-      deps.notifier.showWarning(
-        localize('runtime.extract.no-editor', 'No active editor. Please open a file first.'),
-      )
-      return
-    }
+			const editor = vscode.window.activeTextEditor;
+			if (!editor) {
+				deps.notifier.showWarning(
+					localize(
+						'runtime.extract.no-editor',
+						'No active editor. Please open a file first.',
+					),
+				);
+				return;
+			}
 
-    const config = getConfiguration()
-    const document = editor.document
+			const config = getConfiguration();
+			const document = editor.document;
 
-    // Perform safety checks
-    const safetyResult = handleSafetyChecks(document, config)
-    if (!safetyResult.proceed) {
-      if (safetyResult.error) {
-        await deps.notifier.showEnhancedError(safetyResult.error)
-      } else {
-        deps.notifier.showError(safetyResult.message)
-      }
-      return
-    }
+			// Perform safety checks
+			const safetyResult = handleSafetyChecks(document, config);
+			if (!safetyResult.proceed) {
+				if (safetyResult.error) {
+					await deps.notifier.showEnhancedError(safetyResult.error);
+				} else {
+					deps.notifier.showError(safetyResult.message);
+				}
+				return;
+			}
 
-    // Ask for regex pattern
-    const patternInput = await vscode.window.showInputBox({
-      prompt: localize('runtime.extract.pattern.prompt', 'Enter regex pattern'),
-      placeHolder: localize('runtime.extract.pattern.placeholder', 'e.g., /\\d+/'),
-      validateInput: (value) => {
-        if (!value || value.trim().length === 0) {
-          return localize('runtime.extract.pattern.invalid', 'Pattern cannot be empty')
-        }
-        return null
-      },
-    })
+			try {
+				await vscode.window.withProgress(
+					{
+						location: vscode.ProgressLocation.Notification,
+						title: localize('runtime.extract.progress', 'Extracting regex patterns...'),
+						cancellable: false,
+					},
+					async (_progress, token): Promise<void> => {
+						if (token.isCancellationRequested) return;
 
-    if (!patternInput) {
-      return
-    }
+						const text = document.getText();
 
-    // Extract pattern and flags
-    const patternMatch = patternInput.match(/^\/(.+)\/([gimsuvy]*)$/)
-    let pattern: string
-    let flags: string
+						// Extract regex patterns from the file
+						const patterns = extractRegexPatterns(text);
 
-    if (patternMatch) {
-      pattern = patternMatch[1] || ''
-      flags = patternMatch[2] || 'g' // Default to global for extraction
-    } else {
-      pattern = patternInput.trim()
-      flags = 'g' // Default to global
-    }
+						if (token.isCancellationRequested) return;
 
-    // Ensure global flag for extraction
-    if (!flags.includes('g')) {
-      flags += 'g'
-    }
+						if (patterns.length === 0) {
+							deps.notifier.showInfo(
+								localize(
+									'runtime.extract.no-matches',
+									'No regex patterns found in the file.',
+								),
+							);
+							return;
+						}
 
-    try {
-      await deps.notifier.showProgress(
-        localize('runtime.extract.progress', 'Extracting matches...'),
-        async (progress, _token) => {
-          progress.report({ message: 'Processing...', increment: 50 })
+						// Format results - one pattern per line
+						const outputLines: string[] = [];
+						for (const pattern of patterns) {
+							// Format as /pattern/flags with line number
+							const formatted = `/${pattern.pattern}/${pattern.flags}`;
+							outputLines.push(formatted);
+						}
 
-          const text = document.getText()
-          const result = testRegexPattern(pattern, flags, text, config.regexMaxMatchLimit)
+						const output = outputLines.join('\n');
 
-          progress.report({ message: 'Formatting results...', increment: 50 })
+						// Open result document side-by-side
+						const doc = await vscode.workspace.openTextDocument({
+							content: output,
+							language: 'plaintext',
+						});
 
-          if (!result.success) {
-            deps.notifier.showError(
-              localize(
-                'runtime.extract.error',
-                'Extraction failed: {0}',
-                result.errors[0]?.message || 'Unknown error',
-              ),
-            )
-            return
-          }
+						const viewColumn = config.openResultsSideBySide
+							? vscode.ViewColumn.Beside
+							: vscode.ViewColumn.Active;
 
-          // Format results
-          const outputLines: string[] = []
+						await vscode.window.showTextDocument(doc, viewColumn);
 
-          if (result.matches.length === 0) {
-            outputLines.push(localize('runtime.extract.no-matches', 'No matches found.'))
-          } else {
-            for (const match of result.matches) {
-              outputLines.push(match.match)
-            }
-          }
+						// Copy to clipboard if enabled
+						if (config.copyToClipboardEnabled) {
+							try {
+								await vscode.env.clipboard.writeText(output);
+								deps.statusBar.updateText(
+									localize(
+										'runtime.extract.copied',
+										'Extracted {0} patterns to clipboard',
+										patterns.length,
+									),
+								);
+							} catch {
+								// Ignore clipboard errors
+							}
+						} else {
+							deps.statusBar.updateText(
+								localize(
+									'runtime.extract.complete',
+									'Extracted {0} patterns',
+									patterns.length,
+								),
+							);
+						}
 
-          const output = outputLines.join('\n')
+						deps.telemetry.event('extract-completed', {
+							matchCount: patterns.length,
+						});
 
-          // Copy to clipboard if enabled
-          if (config.copyToClipboardEnabled) {
-            await vscode.env.clipboard.writeText(output)
-            deps.notifier.showInfo(
-              localize(
-                'runtime.extract.copied',
-                'Extracted {0} matches to clipboard',
-                result.matches.length,
-              ),
-            )
-          }
+						if (config.notificationsLevel === 'all') {
+							deps.notifier.showInfo(
+								localize(
+									'runtime.extract.complete',
+									'Extracted {0} regex patterns',
+									patterns.length,
+								),
+							);
+						}
+					},
+				);
+			} catch (error) {
+				const errorMessage =
+					error instanceof Error ? error.message : String(error);
+				deps.notifier.showError(
+					localize(
+						'runtime.extract.error',
+						'Extraction failed: {0}',
+						errorMessage,
+					),
+				);
+				deps.telemetry.event('extract-failed', { error: errorMessage });
+			}
+		},
+	);
 
-          // Open result document
-          const doc = await vscode.workspace.openTextDocument({
-            content: output,
-            language: 'plaintext',
-          })
-
-          const viewColumn = config.openResultsSideBySide
-            ? vscode.ViewColumn.Beside
-            : vscode.ViewColumn.Active
-
-          await vscode.window.showTextDocument(doc, viewColumn)
-
-          deps.telemetry.event('extract-completed', {
-            matchCount: result.matches.length,
-          })
-
-          if (config.notificationsLevel === 'all') {
-            deps.notifier.showInfo(
-              localize('runtime.extract.complete', 'Extracted {0} matches', result.matches.length),
-            )
-          }
-        },
-      )
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error)
-      deps.notifier.showError(
-        localize('runtime.extract.error', 'Extraction failed: {0}', errorMessage),
-      )
-      deps.telemetry.event('extract-failed', { error: errorMessage })
-    }
-  })
-
-  context.subscriptions.push(disposable)
+	context.subscriptions.push(disposable);
 }

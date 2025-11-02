@@ -1,188 +1,218 @@
-# Regex-LE
+<p align="center">
+  <img src="src/assets/images/icon.png" alt="Regex-LE Logo" width="96" height="96"/>
+</p>
+<h1 align="center">Regex-LE: Zero Hassle Regex Extraction & Validation</h1>
+<p align="center">
+  <b>Test, extract, and validate regular expressions directly inside VS Code</b><br/>
+  <i>Automatic pattern detection • Performance scoring • Built-in ReDoS detection</i>
+</p>
 
-**Zero-Hassle Regex Extraction & Validation** - Test, extract, and validate regular expressions directly inside VS Code with real-time match previews, performance scoring, and built-in ReDoS detection.
+<p align="center">
+  <a href="https://open-vsx.org/extension/OffensiveEdge/regex-le">
+    <img src="https://img.shields.io/badge/Install%20from-Open%20VSX-blue?style=for-the-badge&logo=visualstudiocode" alt="Install from Open VSX" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le">
+    <img src="https://img.shields.io/badge/Install%20from-VS%20Code-blue?style=for-the-badge&logo=visualstudiocode" alt="Install from VS Code" />
+  </a>
+</p>
 
-[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+<p align="center">
+  <img src="https://img.shields.io/open-vsx/dt/OffensiveEdge/regex-le?label=downloads&color=green" alt="Downloads" />
+  <img src="https://img.shields.io/open-vsx/rating/OffensiveEdge/regex-le?label=rating&color=yellow" alt="Rating" />
+  <img src="https://img.shields.io/badge/Open%20Source-100%25-purple" alt="100% Open Source" />
+  <img src="https://img.shields.io/badge/Vulnerabilities-0%20Critical-brightgreen" alt="Zero Critical Vulnerabilities" />
+</p>
 
-## ✨ Features
+---
 
-- 🔍 **Test Regex Patterns** - Test patterns against your code with detailed match information
-- 📤 **Extract Matches** - Extract all matches from any file with one command
-- ✅ **Validate Patterns** - Check regex validity and detect ReDoS vulnerabilities
-- 🚀 **Performance Scoring** - Get performance metrics and optimization suggestions
-- 🛡️ **ReDoS Detection** - Built-in protection against Regular Expression Denial of Service attacks
-- 🔒 **Zero-Hassle Guarantee** - Works reliably on all text files with automatic safety checks
+<p align="center">
+  <img src="src/assets/images/demo.gif" alt="Regex-LE Demo" style="max-width: 100%; height: auto;" />
+</p>
+
+---
+
+## ⚡ See It In Action
+
+**Before**: Manually finding and testing regex patterns (10+ minutes)
+
+```javascript
+const pattern1 = /\d+/g;
+const pattern2 = new RegExp("\\w+", "i");
+// ... searching through files to find all regex patterns
+```
+
+**After**: One command extracts all patterns automatically
+
+```
+/\d+/g
+/\w+/i
+/[a-z]+/g
+... (12 patterns total)
+```
+
+---
+
+## ✅ Why Regex-LE?
+
+- **Automatic pattern extraction** - Finds all regex patterns in your code automatically
+- **Zero Config** - Install → Press Extract → Done
+- **ReDoS Protection** - Built-in vulnerability detection before execution
+- **Performance Scoring** - Get metrics and optimization recommendations
+
+Perfect for testing patterns, extracting data, and validating regex security.
+
+---
+
+## 🙏 Thank You
+
+If Regex-LE saves you time, a quick rating helps other developers discover it:  
+⭐ [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le)
+
+---
+
+### Key Features
+
+- **Extract Regex Patterns** - Automatically finds all regex patterns in your file (no prompts!)
+- **Test Patterns** - Test extracted patterns against file content with detailed results
+- **Validate Patterns** - Validate all patterns and detect ReDoS vulnerabilities automatically
+- **Performance Scoring** - Get metrics and optimization suggestions
+- **ReDoS Detection** - Protection against Regular Expression Denial of Service
+- **Universal Support** - Works on any text file format
+- **13 languages** - English, Chinese, German, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Ukrainian, Vietnamese
+
+## 🚀 More from the LE Family
+
+- **[Paths-LE](https://open-vsx.org/extension/OffensiveEdge/paths-le)** - Extract file paths from code and configs • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.paths-le)
+- **[Secrets-LE](https://open-vsx.org/extension/OffensiveEdge/secrets-le)** - Detect API keys, tokens, and credentials • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.secrets-le)
+- **[String-LE](https://open-vsx.org/extension/OffensiveEdge/string-le)** - Extract user-visible strings for i18n • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.string-le)
+- **[Numbers-LE](https://open-vsx.org/extension/OffensiveEdge/numbers-le)** - Extract and analyze numeric data • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.numbers-le)
+- **[URLs-LE](https://open-vsx.org/extension/OffensiveEdge/urls-le)** - Audit API endpoints and external resources • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.urls-le)
+- **[Colors-LE](https://open-vsx.org/extension/OffensiveEdge/colors-le)** - Extract and analyze colors from stylesheets • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.colors-le)
+- **[Dates-LE](https://open-vsx.org/extension/OffensiveEdge/dates-le)** - Extract temporal data from logs and APIs • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.dates-le)
+
+## 💡 Use Cases
+
+- **Pattern Discovery** - Find all regex patterns in your codebase automatically
+- **Pattern Testing** - Test extracted patterns against file content with detailed results
+- **Security Validation** - Detect ReDoS vulnerabilities before deployment
+- **Performance Optimization** - Get actionable recommendations for slow patterns
+
+### Extracting Regex Patterns
+
+Automatically find all regex patterns in your code:
+
+```javascript
+// Your file contains:
+const pattern1 = /\d+/g;
+const pattern2 = new RegExp('\\w+', 'i');
+const pattern3 = /[a-z]+/gm;
+
+// Extract command finds them all automatically:
+/\d+/g
+/\w+/i
+/[a-z]+/gm
+```
+
+---
+
+### Testing Patterns
+
+Test extracted patterns against your file content:
+
+```javascript
+// Extracted pattern: /\d+/g
+// Test against: "Call 555-123-4567 or 555-987-6543"
+// Results: 2 matches found (555-123-4567, 555-987-6543)
+// Performance: Excellent (95/100)
+```
+
+---
+
+### Validating Patterns
+
+Automatically validate all patterns in your file:
+
+```javascript
+// Your file contains:
+const valid = /\d+/g; // ✅ Valid, no ReDoS
+const vulnerable = /(a+)+b/; // ⚠️ Valid but ReDoS vulnerable
+
+// Validate command checks all:
+// Pattern 1: ✅ Valid, No ReDoS
+// Pattern 2: ✅ Valid, ⚠️ ReDoS: Critical - Nested quantifiers
+```
+
+---
 
 ## 🚀 Quick Start
 
-1. **Open a file** in VS Code (any text file works!)
-2. **Press `Ctrl+Alt+R`** (or `Cmd+Alt+R` on Mac) or search for "Regex-LE: Test Regex"
-3. **Enter your pattern** (e.g., `/\\d+/` to find numbers)
-4. **View results** with matches, positions, and performance metrics
+1. Install from [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) or [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le)
+2. Open any file with regex patterns (JavaScript, Python, or any text file)
+3. Run `Regex-LE: Extract Matches` to see all patterns in your file
+4. Use `Test Regex` or `Validate Regex` to test/validate the extracted patterns
 
-## 📋 Commands
+## 📋 Available Commands
 
-### Test Regex (`regex-le.test`)
-Test a regex pattern against the active editor content with detailed results.
+Regex-LE provides **5 commands** accessible via Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-**Usage**: `Ctrl+Alt+R` / `Cmd+Alt+R` or Command Palette → "Regex-LE: Test Regex"
+### Core Commands
 
-**Features**:
-- Interactive flag selection (global, case-insensitive, multiline, etc.)
-- Line and column position for each match
-- ReDoS vulnerability warnings
-- Performance scoring and metrics
-- Markdown-formatted results report
+- **Extract Matches** - Automatically extracts all regex patterns from current document (no prompts!)
+- **Test Regex** (`Cmd/Ctrl+Alt+R`) - Test extracted patterns against file content with detailed results
+- **Validate Pattern** - Validates all extracted patterns and checks for ReDoS vulnerabilities
 
-### Extract Matches (`regex-le.extract`)
-Extract all matches from the active file and display them as a list.
+### Settings & Help
 
-**Usage**: Command Palette → "Regex-LE: Extract Matches"
-
-**Features**:
-- Automatic global flag for extraction
-- Clipboard integration (if enabled)
-- Side-by-side results view
-- Progress indication for large files
-
-### Validate Pattern (`regex-le.validate`)
-Validate a regex pattern and check for security issues.
-
-**Usage**: Command Palette → "Regex-LE: Validate Regex"
-
-**Features**:
-- Pattern syntax validation
-- ReDoS vulnerability detection
-- Performance score calculation
-- Security recommendations
-
-### Settings Management
-- **Export Settings** - Save your configuration to a JSON file
-- **Import Settings** - Restore settings from a previously exported file
-- **Reset Settings** - Reset all settings to defaults
-
-## 📁 Supported File Types
-
-**Regex-LE works universally on any text file!** Unlike format-specific extractors that require parsers, regex operates directly on text content, making it truly universal.
-
-### ✅ Recommended File Types (Zero-Hassle Guaranteed)
-
-**Programming Languages**
-- JavaScript/TypeScript (`.js`, `.ts`, `.jsx`, `.tsx`, `.mjs`, `.cjs`)
-- Python (`.py`, `.pyw`, `.pyi`)
-- Ruby (`.rb`, `.rake`)
-- Go (`.go`)
-- Rust (`.rs`)
-- Java (`.java`)
-- C/C++ (`.c`, `.cpp`, `.h`, `.hpp`)
-- C# (`.cs`)
-- PHP (`.php`)
-- Swift (`.swift`)
-- Kotlin (`.kt`)
-- And any other programming language
-
-**Data Formats**
-- JSON (`.json`)
-- YAML (`.yaml`, `.yml`)
-- TOML (`.toml`)
-- XML (`.xml`, `.xhtml`)
-- CSV (`.csv`)
-
-**Web Technologies**
-- HTML (`.html`, `.htm`)
-- CSS (`.css`, `.scss`, `.less`, `.sass`)
-
-**Configuration Files**
-- Environment (`.env`, `.env.local`, `.env.production`)
-- INI (`.ini`, `.cfg`, `.conf`)
-- Config files (`.config`, `.conf`)
-
-**Documentation & Text**
-- Markdown (`.md`, `.markdown`)
-- Plain Text (`.txt`)
-- Log Files (`.log`)
-- README files
-- Documentation (`.rst`, `.tex`, `.org`)
-
-**Shell & Scripts**
-- Shell/Bash (`.sh`, `.bash`, `.zsh`)
-- PowerShell (`.ps1`)
-- Batch (`.bat`, `.cmd`)
-
-### How It Works
-
-Regex-LE applies patterns directly to text content—no format parsing required. This means:
-
-✅ **Works on any text file** VS Code can open  
-✅ **No format-specific limitations**  
-✅ **Safety checks handle edge cases** (binary detection, size limits)  
-✅ **Reliable results** guaranteed by Zero-Hassle design
-
-### Safety Features
-
-Regex-LE automatically protects you:
-- 🛡️ **Binary file detection** - Blocks processing of binary files
-- 📏 **Size limits** - Warns before processing very large files
-- ⚠️ **ReDoS detection** - Warns about vulnerable patterns
-- 🚦 **Match limits** - Prevents excessive memory usage
-
-### Examples by File Type
-
-**JavaScript/TypeScript** - Extract function names:
-```javascript
-// Pattern: /\bfunction\s+(\w+)/g
-// Matches: function declarations
-```
-
-**JSON** - Extract all string values:
-```json
-// Pattern: "([^"]+)"
-// Matches: All JSON string values
-```
-
-**HTML** - Extract all URLs:
-```html
-<!-- Pattern: https?://[^\s"<>]+ -->
-<!-- Matches: All HTTP/HTTPS URLs -->
-```
-
-**CSV** - Extract email addresses:
-```csv
-// Pattern: [\w.-]+@[\w.-]+\.\w+
-// Matches: Email addresses in any column
-```
-
-**Log Files** - Extract timestamps:
-```log
-// Pattern: \d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}
-// Matches: ISO 8601 timestamps
-```
+- **Open Settings** - Quick access to extension settings
+- **Help & Troubleshooting** - Comprehensive in-editor documentation
 
 ## ⚙️ Configuration
 
 Regex-LE has minimal configuration to keep things simple. Most settings are available in VS Code's settings UI under "Regex-LE".
 
-### Key Settings
+Key settings include:
 
-- **`regex.realtimePreviewEnabled`** - Enable real-time regex preview (future feature)
-- **`regex.redosDetectionEnabled`** - Enable ReDoS vulnerability detection
-- **`regex.maxMatchLimit`** - Maximum matches to return (default: 1000)
-- **`copyToClipboardEnabled`** - Auto-copy extraction results
-- **`openResultsSideBySide`** - Open results side-by-side
-- **`notificationsLevel`** - Control notification verbosity (all, important, silent)
-- **`safety.enabled`** - Enable safety checks for large files
-- **`performance.enabled`** - Enable performance monitoring
+- ReDoS detection enabled/disabled
+- Performance scoring enabled/disabled
+- Maximum match limits
+- Output format preferences (side-by-side, clipboard copy)
+- Safety warnings and thresholds
+- Notification levels (silent, important, all)
 
-For the complete list, open VS Code Settings and search for "regex-le".
+For the complete list of available settings, open VS Code Settings and search for "regex-le".
 
-### Settings Management
+## 📁 Supported File Types
 
-- **Export** - Save your configuration to share or backup
-- **Import** - Restore settings from a file
-- **Reset** - Restore all settings to defaults
+**Regex-LE works universally on any text file!** Unlike format-specific extractors that require parsers, regex operates directly on text content.
 
-All settings files are validated for security and safety.
+| Category          | File Types                                                                          |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| **Programming**   | JavaScript, TypeScript, Python, Ruby, Go, Rust, Java, C/C++, C#, PHP, Swift, Kotlin |
+| **Data Formats**  | JSON, YAML, TOML, XML, CSV                                                          |
+| **Web**           | HTML, CSS, SCSS, LESS, Sass                                                         |
+| **Config**        | .env, .ini, .cfg, .conf                                                             |
+| **Documentation** | Markdown, Plain Text, Log Files                                                     |
+| **Shell**         | Bash, Zsh, PowerShell, Batch                                                        |
+
+### What Gets Extracted
+
+Regex-LE automatically detects patterns in these formats:
+
+- **Literal regex**: `/pattern/flags` (e.g., `/\d+/g`, `/[a-z]+/i`)
+- **RegExp constructor**: `new RegExp('pattern', 'flags')`
+- **RegExp calls**: `RegExp('pattern', 'flags')`
+
+All patterns are extracted automatically—no manual input required!
+
+### Smart Features
+
+- **Binary file detection** - Automatically blocks processing of binary files
+- **Size limits** - Warns before processing very large files
+- **ReDoS detection** - Warns about vulnerable patterns
+- **Match limits** - Prevents excessive memory usage
+- **Automatic deduplication** - Same pattern with same flags shown only once
+
+---
 
 ## 🌍 Language Support
 
@@ -190,65 +220,62 @@ All settings files are validated for security and safety.
 
 ## 🧩 System Requirements
 
-- **VS Code**: 1.70.0 or higher
-- **Platform**: Windows, macOS, Linux
-- **Node.js**: 20.0.0+ (bundled with VS Code)
+**VS Code** 1.70.0+ • **Platform** Windows, macOS, Linux  
+**Memory** 200MB recommended for large files
 
-## 🔒 Privacy & Security
+## 🔒 Privacy
 
-- **100% local processing** - No data leaves your machine
-- **No network requests** - Everything runs locally
-- **Optional telemetry** - Local-only logging when enabled
-- **Secure settings import** - Validated against schema to prevent malicious configurations
-- **ReDoS protection** - Built-in vulnerability detection
+100% local processing. No data leaves your machine. Optional logging: `regex-le.telemetryEnabled`
 
-## 🎯 Zero-Hassle Guarantee
+## ⚡ Performance
 
-Regex-LE is designed to "just work" without complications:
+Regex-LE includes built-in performance monitoring and configurable thresholds to help track operation speed and resource usage.
 
-✅ **Universal text support** - Works on any file VS Code can open as text  
-✅ **Automatic safety checks** - Binary files, size limits handled automatically  
-✅ **Graceful error handling** - Clear messages, not cryptic errors  
-✅ **Performance protection** - Match limits prevent resource exhaustion  
-✅ **ReDoS awareness** - Warns about vulnerable patterns before execution
+## 🔧 Troubleshooting
 
-Unlike format-specific extractors (which require parsers for each file type), regex operates on raw text—making it truly universal while maintaining reliability.
+**No patterns found?**  
+Ensure your file contains regex patterns in formats like `/pattern/flags` or `new RegExp()`
 
-## 🆚 Comparison with Other LE Extensions
+**Pattern not matching?**  
+Check flags (global, case-insensitive, multiline) and test with simpler patterns first
 
-| Feature | Regex-LE | Paths-LE | Secrets-LE |
-|---------|----------|----------|------------|
-| **File Type Support** | ✅ Any text file | ⚠️ 9 specific types | ⚠️ Multiple types |
-| **Format Parsing** | ❌ Not needed | ✅ Required | ❌ Regex-based |
-| **Zero-Hassle** | ✅ Universal | ⚠️ Format-limited | ✅ Works on text |
-| **Custom Patterns** | ✅ User-defined | ❌ Fixed patterns | ⚠️ Pre-defined |
+**ReDoS warnings?**  
+Review pattern for nested quantifiers or overlapping alternations
 
-**Key Insight**: Regex-LE offers maximum flexibility—you define the pattern, and it works universally.
+**Need help?**  
+Check [Issues](https://github.com/OffensiveEdge/regex-le/issues) or enable logging: `regex-le.telemetryEnabled: true`
 
-## 📚 Learn More
+## ❓ FAQ
 
-- **Performance Guide** - Learn about regex performance optimization
-- **ReDoS Detection** - Understanding Regular Expression Denial of Service
-- **File Type Analysis** - See [docs/FILE_TYPE_ANALYSIS.md](docs/FILE_TYPE_ANALYSIS.md) for detailed file type support analysis
+**What patterns are extracted?**  
+Literal regex (`/pattern/flags`), `new RegExp()` calls, and `RegExp()` function calls
 
-## 🤝 Contributing
+**Does it work on large files?**  
+Yes, with automatic safety checks and warnings for files over 1MB
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+**Is ReDoS detection accurate?**  
+It catches common patterns but isn't exhaustive. Always test with realistic data
 
-## 📝 License
+**Can I test custom patterns?**  
+Yes! If no patterns are found in the file, Test/Validate commands will prompt you to enter a pattern manually
 
-MIT License - See [LICENSE](LICENSE) file for details.
+**How does Extract work?**  
+It automatically scans your file and finds all regex patterns—no prompts, no configuration needed
 
-## 🙏 Acknowledgments
+## 📊 Testing
 
-Built with patterns from the LE extension family:
-- Paths-LE, Secrets-LE, Numbers-LE, Dates-LE, URLs-LE, Strings-LE, EnvSync-LE, Scrape-LE
+**81 unit tests across 5 test files** • Powered by Vitest • Run with `bun run test:coverage`
 
-## 📞 Support
+### Test Suite Highlights
 
-- **GitHub Issues**: [Report a bug or request a feature](https://github.com/OffensiveEdge/regex-le/issues)
-- **Documentation**: See the `docs/` directory for detailed guides
+- **Comprehensive regex validation** with edge case coverage
+- **ReDoS detection tests** for common vulnerability patterns
+- **Performance scoring** validation
+- **Pattern extraction** tests for all supported formats
+- **Error handling** with graceful degradation
+- **Configuration and settings** validation
 
 ---
 
-**Made with ❤️ by [OffensiveEdge](https://github.com/OffensiveEdge)**
+Copyright © 2025
+<a href="https://github.com/OffensiveEdge">@OffensiveEdge</a>. All rights reserved.

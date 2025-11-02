@@ -224,4 +224,3 @@ export function validateFileSize(sizeBytes: number): string | null {
 	}
 	return null;
 }
-

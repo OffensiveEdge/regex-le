@@ -3,7 +3,7 @@
 	"publisher": "nolindnaidoo",
 	"displayName": "Regex-LE",
 	"description": "Zero-Hassle Regex Extraction & Validation - Test, extract, and validate regular expressions directly inside VS Code with real-time match previews, performance scoring, and built-in ReDoS detection.",
-	"version": "1.8.0",
+	"version": "1.7.0",
 	"license": "MIT",
 	"author": {
 		"name": "OffensiveEdge",
@@ -48,9 +48,6 @@
 		"onCommand:regex-le.extract",
 		"onCommand:regex-le.validate",
 		"onCommand:regex-le.openSettings",
-		"onCommand:regex-le.settings.export",
-		"onCommand:regex-le.settings.import",
-		"onCommand:regex-le.settings.reset",
 		"onCommand:regex-le.help"
 	],
 	"capabilities": {
@@ -83,21 +80,6 @@
 			{
 				"command": "regex-le.openSettings",
 				"title": "%manifest.command.settings.title%",
-				"category": "%manifest.command.category%"
-			},
-			{
-				"command": "regex-le.settings.export",
-				"title": "%manifest.command.settings.export.title%",
-				"category": "%manifest.command.category%"
-			},
-			{
-				"command": "regex-le.settings.import",
-				"title": "%manifest.command.settings.import.title%",
-				"category": "%manifest.command.category%"
-			},
-			{
-				"command": "regex-le.settings.reset",
-				"title": "%manifest.command.settings.reset.title%",
 				"category": "%manifest.command.category%"
 			},
 			{
@@ -134,15 +116,6 @@
 				},
 				{
 					"command": "regex-le.openSettings"
-				},
-				{
-					"command": "regex-le.settings.export"
-				},
-				{
-					"command": "regex-le.settings.import"
-				},
-				{
-					"command": "regex-le.settings.reset"
 				},
 				{
 					"command": "regex-le.help"

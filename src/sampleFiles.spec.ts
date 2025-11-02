@@ -3,9 +3,9 @@
  * Verifies that Regex-LE can process sample files across different file types
  */
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import { testRegexPattern } from './extraction/regex/regexTest';
 
 const SAMPLE_DIR = join(process.cwd(), 'sample');
@@ -23,15 +23,23 @@ describe('Sample Files Integration', () => {
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
-			
+
 			// Should find functions like calculateTotal, processUserData
-			const functionNames = result.matches.map((m) => m.groups?.[0]?.value || '');
-			expect(functionNames.some((name) => name.includes('calculate'))).toBe(true);
+			const functionNames = result.matches.map(
+				(m) => m.groups?.[0]?.value || '',
+			);
+			expect(functionNames.some((name) => name.includes('calculate'))).toBe(
+				true,
+			);
 		});
 
 		it('should extract string values from app.js', () => {
 			const content = readSampleFile('app.js');
-			const result = testRegexPattern(/['"`]([^'"`]+)['"`]/g.source, 'g', content);
+			const result = testRegexPattern(
+				/['"`]([^'"`]+)['"`]/g.source,
+				'g',
+				content,
+			);
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
@@ -45,16 +53,18 @@ describe('Sample Files Integration', () => {
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
-			
+
 			// Should find interfaces like UserProfile, ApiResponse
-			const interfaceNames = result.matches.map((m) => m.groups?.[0]?.value || '');
+			const interfaceNames = result.matches.map(
+				(m) => m.groups?.[0]?.value || '',
+			);
 			expect(interfaceNames.length).toBeGreaterThan(0);
 		});
 
 		it('should extract import paths from app.ts', () => {
 			const content = readSampleFile('app.ts');
 			const result = testRegexPattern(
-				"import\\s+.*?\\s+from\\s+['\"](.+?)['\"]",
+				'import\\s+.*?\\s+from\\s+[\'"](.+?)[\'"]',
 				'g',
 				content,
 			);
@@ -165,7 +175,11 @@ describe('Sample Files Integration', () => {
 
 		it('should extract URLs from styles.css', () => {
 			const content = readSampleFile('styles.css');
-			const result = testRegexPattern(/url\(['"]?([^'")]+)['"]?\)/g.source, 'g', content);
+			const result = testRegexPattern(
+				/url\(['"]?([^'")]+)['"]?\)/g.source,
+				'g',
+				content,
+			);
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
@@ -205,7 +219,11 @@ describe('Sample Files Integration', () => {
 
 		it('should extract log levels from log.txt', () => {
 			const content = readSampleFile('log.txt');
-			const result = testRegexPattern('\\[(INFO|DEBUG|WARN|ERROR)\\]', 'g', content);
+			const result = testRegexPattern(
+				'\\[(INFO|DEBUG|WARN|ERROR)\\]',
+				'g',
+				content,
+			);
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
@@ -241,7 +259,11 @@ describe('Sample Files Integration', () => {
 
 		it('should extract links from readme.md', () => {
 			const content = readSampleFile('readme.md');
-			const result = testRegexPattern(/\[([^\]]+)\]\(([^)]+)\)/g.source, 'g', content);
+			const result = testRegexPattern(
+				/\[([^\]]+)\]\(([^)]+)\)/g.source,
+				'g',
+				content,
+			);
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
@@ -295,4 +317,3 @@ describe('Sample Files Integration', () => {
 		});
 	});
 });
-
