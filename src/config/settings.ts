@@ -21,4 +21,3 @@ export function registerOpenSettingsCommand(
 
 	context.subscriptions.push(command);
 }
-

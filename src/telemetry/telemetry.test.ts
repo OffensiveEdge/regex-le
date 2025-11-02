@@ -133,14 +133,25 @@ describe('telemetry', () => {
 			expect(createOutputChannelSpy).not.toHaveBeenCalled();
 		});
 
-		it('should handle multiple events', () => {
-			const appendLineSpy = vi.fn();
-			vi.mocked(vscode.window.createOutputChannel).mockReturnValue({
-				appendLine: appendLineSpy,
-				dispose: vi.fn(),
+		it('should handle multiple events', async () => {
+			// Reset config mock to ensure telemetry is enabled
+			const { getConfiguration } = await import('../config/config');
+			vi.mocked(getConfiguration).mockReturnValue({
+				telemetryEnabled: true,
 			} as any);
 
+			const appendLineSpy = vi.fn();
+			const outputChannel = {
+				appendLine: appendLineSpy,
+				dispose: vi.fn(),
+			};
+			const createOutputChannelSpy = vi.mocked(
+				vscode.window.createOutputChannel,
+			);
+			createOutputChannelSpy.mockReturnValue(outputChannel as any);
+
 			const telemetry = createTelemetry();
+
 			telemetry.event('event1');
 			telemetry.event('event2', { prop: 'value' });
 

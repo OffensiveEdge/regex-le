@@ -55,7 +55,10 @@ export function registerExtractCommand(
 				await vscode.window.withProgress(
 					{
 						location: vscode.ProgressLocation.Notification,
-						title: localize('runtime.extract.progress', 'Extracting regex patterns...'),
+						title: localize(
+							'runtime.extract.progress',
+							'Extracting regex patterns...',
+						),
 						cancellable: false,
 					},
 					async (_progress, token): Promise<void> => {

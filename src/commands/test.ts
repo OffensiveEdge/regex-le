@@ -71,7 +71,10 @@ export function registerTestCommand(
 
 				// Fallback: prompt for pattern if none found
 				const patternInput = await vscode.window.showInputBox({
-					prompt: localize('runtime.test.pattern.prompt', 'Enter regex pattern to test'),
+					prompt: localize(
+						'runtime.test.pattern.prompt',
+						'Enter regex pattern to test',
+					),
 					placeHolder: localize(
 						'runtime.test.pattern.placeholder',
 						'e.g., /\\d+/',
@@ -131,7 +134,10 @@ export function registerTestCommand(
 				await vscode.window.withProgress(
 					{
 						location: vscode.ProgressLocation.Notification,
-						title: localize('runtime.test.progress', 'Testing regex pattern...'),
+						title: localize(
+							'runtime.test.progress',
+							'Testing regex pattern...',
+						),
 						cancellable: false,
 					},
 					async (progress) => {
@@ -219,7 +225,10 @@ async function testSinglePattern(
 
 	let performanceScore;
 	if (testResult.performance) {
-		performanceScore = calculatePerformanceScore(testResult.performance, text.length);
+		performanceScore = calculatePerformanceScore(
+			testResult.performance,
+			text.length,
+		);
 	}
 
 	// Build result report
@@ -242,9 +251,13 @@ async function testSinglePattern(
 			for (let i = 0; i < maxMatchesToShow; i++) {
 				const match = testResult.matches[i];
 				if (match) {
-					reportLines.push(`${i + 1}. \`${match.match}\` at position ${match.index}`);
+					reportLines.push(
+						`${i + 1}. \`${match.match}\` at position ${match.index}`,
+					);
 					if (match.line !== undefined) {
-						reportLines.push(`   Line ${match.line}, Column ${match.column || 0}`);
+						reportLines.push(
+							`   Line ${match.line}, Column ${match.column || 0}`,
+						);
 					}
 				}
 			}
@@ -277,9 +290,15 @@ async function testSinglePattern(
 		reportLines.push('');
 		reportLines.push('## Performance Score');
 		reportLines.push(`**Overall:** ${performanceScore.overall.toFixed(1)}/100`);
-		reportLines.push(`**Complexity:** ${performanceScore.complexity.toFixed(1)}/100`);
-		reportLines.push(`**Execution Time:** ${performanceScore.executionTime.toFixed(1)}/100`);
-		reportLines.push(`**Memory Usage:** ${performanceScore.memoryUsage.toFixed(1)}/100`);
+		reportLines.push(
+			`**Complexity:** ${performanceScore.complexity.toFixed(1)}/100`,
+		);
+		reportLines.push(
+			`**Execution Time:** ${performanceScore.executionTime.toFixed(1)}/100`,
+		);
+		reportLines.push(
+			`**Memory Usage:** ${performanceScore.memoryUsage.toFixed(1)}/100`,
+		);
 		reportLines.push(`**Description:** ${performanceScore.description}`);
 	}
 
@@ -289,7 +308,9 @@ async function testSinglePattern(
 		reportLines.push(
 			`**Duration:** ${testResult.performance.duration.toFixed(2)}ms`,
 		);
-		reportLines.push(`**Input Size:** ${testResult.performance.inputSize} characters`);
+		reportLines.push(
+			`**Input Size:** ${testResult.performance.inputSize} characters`,
+		);
 		reportLines.push(`**Matches:** ${testResult.performance.itemCount}`);
 	}
 

@@ -28,7 +28,7 @@ export function extractRegexPatterns(
 
 		// Pattern 1: Literal regex like /pattern/flags or /pattern/
 		// Match forward slashes with escape handling
-		const literalRegexPattern = /\/(?:[^\/\r\n\\]|\\.)+\/[gimsuvy]*/g;
+		const literalRegexPattern = /\/(?:[^/\r\n\\]|\\.)+\/[gimsuvy]*/g;
 		let match: RegExpExecArray | null;
 
 		// Reset regex for each line

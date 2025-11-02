@@ -5,10 +5,7 @@ import type { Notifier } from '../ui/notifier';
 import { createNotifier } from '../ui/notifier';
 import type { StatusBar } from '../ui/statusBar';
 import { createStatusBar } from '../ui/statusBar';
-import {
-	createErrorHandler,
-	type ErrorHandler,
-} from '../utils/errorHandling';
+import { createErrorHandler, type ErrorHandler } from '../utils/errorHandling';
 import { createLocalizer, type Localizer } from '../utils/localization';
 import {
 	createPerformanceMonitor,
