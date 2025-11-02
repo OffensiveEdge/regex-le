@@ -249,16 +249,16 @@ describe('Sample Files Integration', () => {
 	});
 
 	describe('Markdown files', () => {
-		it('should extract headers from readme.md', () => {
-			const content = readSampleFile('readme.md');
+		it('should extract headers from README.md', () => {
+			const content = readSampleFile('README.md');
 			const result = testRegexPattern('^#+\\s+(.+)$', 'gm', content);
 
 			expect(result.success).toBe(true);
 			expect(result.matches.length).toBeGreaterThan(0);
 		});
 
-		it('should extract links from readme.md', () => {
-			const content = readSampleFile('readme.md');
+		it('should extract links from README.md', () => {
+			const content = readSampleFile('README.md');
 			const result = testRegexPattern(
 				/\[([^\]]+)\]\(([^)]+)\)/g.source,
 				'g',
