@@ -1,6 +1,6 @@
 {
 	"name": "regex-le",
-	"publisher": "nolindnaidoo",
+	"publisher": "OffensiveEdge",
 	"displayName": "Regex-LE",
 	"description": "Zero-Hassle Regex Extraction & Validation - Test, extract, and validate regular expressions directly inside VS Code with real-time match previews, performance scoring, and built-in ReDoS detection.",
 	"version": "1.7.0",

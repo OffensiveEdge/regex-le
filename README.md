@@ -11,7 +11,7 @@
   <a href="https://open-vsx.org/extension/OffensiveEdge/regex-le">
     <img src="https://img.shields.io/badge/Install%20from-Open%20VSX-blue?style=for-the-badge&logo=visualstudiocode" alt="Install from Open VSX" />
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le">
+  <a href="https://marketplace.visualstudio.com/items?itemName=OffensiveEdge.regex-le">
     <img src="https://img.shields.io/badge/Install%20from-VS%20Code-blue?style=for-the-badge&logo=visualstudiocode" alt="Install from VS Code" />
   </a>
 </p>
@@ -67,7 +67,7 @@ Perfect for testing patterns, extracting data, and validating regex security.
 ## 🙏 Thank You
 
 If Regex-LE saves you time, a quick rating helps other developers discover it:  
-⭐ [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le)
+⭐ [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) • [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=OffensiveEdge.regex-le)
 
 ---
 
@@ -147,7 +147,7 @@ const vulnerable = /(a+)+b/; // ⚠️ Valid but ReDoS vulnerable
 
 ## 🚀 Quick Start
 
-1. Install from [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) or [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nolindnaidoo.regex-le)
+1. Install from [Open VSX](https://open-vsx.org/extension/OffensiveEdge/regex-le) or [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=OffensiveEdge.regex-le)
 2. Open any file with regex patterns (JavaScript, Python, or any text file)
 3. Run `Regex-LE: Extract Matches` to see all patterns in your file
 4. Use `Test Regex` or `Validate Regex` to test/validate the extracted patterns
