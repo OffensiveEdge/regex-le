@@ -232,6 +232,8 @@ All patterns are extracted automatically—no manual input required!
 
 Regex-LE includes built-in performance monitoring and configurable thresholds to help track operation speed and resource usage.
 
+For detailed information, see [Performance Monitoring](docs/PERFORMANCE.md).
+
 ## 🔧 Troubleshooting
 
 **No patterns found?**  
@@ -267,6 +269,10 @@ It automatically scans your file and finds all regex patterns—no prompts, no c
 
 **81 unit tests across 5 test files** • Powered by Vitest • Run with `bun run test:coverage`
 
+### Core Principle
+
+**No broken or failed tests are allowed in commits.** All tests must pass before code can be committed or merged.
+
 ### Test Suite Highlights
 
 - **Comprehensive regex validation** with edge case coverage
@@ -275,6 +281,8 @@ It automatically scans your file and finds all regex patterns—no prompts, no c
 - **Pattern extraction** tests for all supported formats
 - **Error handling** with graceful degradation
 - **Configuration and settings** validation
+
+For detailed testing guidelines, see [Testing Guidelines](docs/TESTING.md).
 
 ---
 
