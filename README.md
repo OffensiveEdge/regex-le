@@ -17,6 +17,7 @@
 </p>
 
 <p align="center">
+  <img src="https://github.com/OffensiveEdge/regex-le/actions/workflows/ci.yml/badge.svg" alt="Build Status" />
   <img src="https://img.shields.io/open-vsx/dt/OffensiveEdge/regex-le?label=downloads&color=green" alt="Downloads" />
   <img src="https://img.shields.io/open-vsx/rating/OffensiveEdge/regex-le?label=rating&color=yellow" alt="Rating" />
   <img src="https://img.shields.io/badge/Open%20Source-100%25-purple" alt="100% Open Source" />

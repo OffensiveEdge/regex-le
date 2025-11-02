@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as vscode from 'vscode';
+import { getConfiguration } from '../config/config';
 import { createTelemetry } from './telemetry';
 
 // Mock vscode and config
@@ -13,6 +14,11 @@ vi.mock('../config/config', () => ({
 describe('telemetry', () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
+		// Reset config mock to default (telemetryEnabled: true)
+		// This ensures tests that modify it don't affect subsequent tests
+		vi.mocked(getConfiguration).mockReturnValue({
+			telemetryEnabled: true,
+		} as any);
 	});
 
 	describe('createTelemetry', () => {
@@ -133,13 +139,10 @@ describe('telemetry', () => {
 			expect(createOutputChannelSpy).not.toHaveBeenCalled();
 		});
 
-		it('should handle multiple events', async () => {
-			// Reset config mock to ensure telemetry is enabled
-			const { getConfiguration } = await import('../config/config');
-			vi.mocked(getConfiguration).mockReturnValue({
-				telemetryEnabled: true,
-			} as any);
-
+		it('should handle multiple events', () => {
+			// Reset config mock to ensure telemetry is enabled (no async import needed)
+			// The module-level mock already sets telemetryEnabled: true by default
+			// beforeEach clears mocks but the module mock should still work
 			const appendLineSpy = vi.fn();
 			const outputChannel = {
 				appendLine: appendLineSpy,
